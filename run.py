@@ -14,7 +14,7 @@ try:
 	process = subprocess.check_output(win_cmd).decode()
 	index = process.index('192')
 	IP = ""
-	for i in range(13):
+	for i in range(14):
 	    IP = IP+process[index+i]
 	print(IP)
 except:

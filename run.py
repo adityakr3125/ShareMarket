@@ -12,11 +12,19 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stock.db'
 try:
 	win_cmd = 'ipconfig'
 	process = subprocess.check_output(win_cmd).decode()
-	index = process.index('192')
+	try:
+		index = process.index('192')
+	except:
+		index = process.index('169')
+        
 	IP = ""
-	for i in range(14):
-	    IP = IP+process[index+i]
+	IP1 = ""
+	for i in range(13):
+                IP = IP+process[index+i]
+                IP1 = IP
+	IP1 = IP1+process[index+13]
 	print(IP)
+	print(IP1)
 except:
 	unix_cmd = 'ifconfig'
 	process = subprocess.check_output(unix_cmd).decode()
@@ -391,5 +399,10 @@ def before_request():
         g.user = session['user']
 
 if __name__ == "__main__":
-	print(IP)
-	app.run(host=IP,port=5000,debug=True)
+        t = IP1[:-1]
+        print(IP)
+        print(t)
+        if IP == t:
+                app.run(host=IP1,port=5000,debug=True)
+        else:
+                app.run(host=IP,port=5000,debug=True)

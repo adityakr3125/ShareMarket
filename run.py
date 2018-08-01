@@ -403,6 +403,6 @@ if __name__ == "__main__":
         print(IP)
         print(t)
         if IP == t:
-                app.run(host=IP1,port=5000,debug=True)
-        else:
                 app.run(host=IP,port=5000,debug=True)
+        else:
+                app.run(host=IP1,port=5000,debug=True)

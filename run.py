@@ -399,10 +399,12 @@ def before_request():
         g.user = session['user']
 
 if __name__ == "__main__":
-        t = IP1[:-1]
+        t = IP+" "
         print(IP)
         print(t)
-        if IP == t:
+        if IP1 == t:
+                print(IP)
+                print(t)
                 app.run(host=IP,port=5000,debug=True)
         else:
                 app.run(host=IP1,port=5000,debug=True)

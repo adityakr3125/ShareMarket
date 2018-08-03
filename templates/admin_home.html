@@ -2,6 +2,7 @@
 	{% block title %}ADMIN{% endblock %}
 	{% block body %}
 	{% include 'admin_nav.html' %}
+	<i><font face="Times New Roman" size=5>
 	<marquee class="text-white bg-danger" scrollamount="10" behaviour="loop">
 		<ul class="list-inline">
 			{% for stock in stocks %}
@@ -18,6 +19,7 @@
 			{% endfor %}
 		</ul>
 	</marquee>
+</font></i>
 	{% include 'footer.html' %}	
 	{% endblock %}
 	{% block script %}

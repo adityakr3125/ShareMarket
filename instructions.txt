@@ -22,3 +22,11 @@ type python
 
 then import data from the csv files into the tables
 
+
+# for new users
+intall python
+install DB Browser for SQLite
+open cmd in the current folder
+type the following :  pip install -r requirements.txt
+this should install all the required modules for running the program
+now your program is ready to use and modify!!

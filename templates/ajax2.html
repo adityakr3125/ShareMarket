@@ -1,0 +1,31 @@
+<script type="text/javascript">
+	function updateProgress(){
+		for( let i=1;i<=15;i++)
+		{	
+			let data = { id: i };
+				let request=$.ajax({
+					url:'{{ url_for('price') }}',
+					method: 'PUT',
+					data: JSON.stringify(data),
+					contentType: 'application/json'
+				});
+				request.done(function(data){
+					var mqcp = document.getElementById("mqcp"+i.toString());
+					var mqrt = document.getElementById("mqrt"+i.toString());
+					var price = document.getElementById("stock"+i.toString());
+					var image = document.getElementById("image"+i.toString());
+					var sl = document.getElementById("shares_left"+i.toString());
+					var inprice = price.innerHTML;
+					if( data['trend'] == 'up' )
+						image.src=mqrt.src="{{ url_for('static', filename='up.png') }}";
+					else
+						image.src=mqrt.src="{{ url_for('static', filename='down.png') }}";
+					price.innerHTML = (data['price']);
+					sl.innerHTML = (data['shares']);
+					mqcp.innerHTML = (data['price']);
+				});
+		}
+	}
+	setInterval(updateProgress,5000);
+
+</script>

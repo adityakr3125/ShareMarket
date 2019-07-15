@@ -4,6 +4,7 @@ import os
 import random
 import subprocess
 import csv
+import socket
 
 app = Flask(__name__)
 app.secret_key = os.urandom(67)
@@ -18,13 +19,18 @@ try:
 		index = process.index('169')
         
 	IP = ""
-	IP1 = ""
-	for i in range(13):
-                IP = IP+process[index+i]
-                IP1 = IP
-	IP1 = IP1+process[index+13]
+	
+	for i in range(16):
+                v = process[index+i]
+                if not v.isdigit():
+                        if v != '.':
+                                break
+                
+                IP = IP + v
+                
+	
 	print(IP)
-	print(IP1)
+	
 except:
 	unix_cmd = 'ifconfig'
 	process = subprocess.check_output(unix_cmd).decode()
@@ -399,12 +405,8 @@ def before_request():
         g.user = session['user']
 
 if __name__ == "__main__":
-        t = IP+" "
+        
         print(IP)
-        print(t)
-        if IP1 == t:
-                print(IP)
-                print(t)
-                app.run(host=IP,port=5000,debug=True)
-        else:
-                app.run(host=IP1,port=5000,debug=True)
+        
+        app.run(host=IP,port=5000,debug=True)
+
